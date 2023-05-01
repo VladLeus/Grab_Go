@@ -16,4 +16,15 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
+    @Override
+    public List<Product> getAll() {
+        return productRepository.findAll();
+    }
+
+    @Override
+    public Product getById(Long id) {
+        return productRepository.findById()
+                .orElseThrow(() -> new NonExistingIdException("Product with given id doesn't exist"));
+    }
+
 }

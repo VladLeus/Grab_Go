@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Controller
 @AllArgsConstructor
 @RestController
 @RequestMapping("/products")
@@ -18,5 +17,17 @@ public class ProductController {
     @PostMapping
     public Product createProduct(@RequestBody CreateProductRequest createProductRequest){
          return productService.create(createProductRequest);
+    }
+
+    @GetMapping
+    public List<Product> getAllProduct() {
+        return productService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public Product getProductById(
+            @PathVariable("id") Long id
+    ) {
+        return productService.getById(id);
     }
 }
