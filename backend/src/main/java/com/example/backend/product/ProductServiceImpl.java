@@ -1,10 +1,13 @@
 package com.example.backend.product;
 
+import com.example.backend.exception.NonExistingIdException;
 import com.example.backend.product.model.CreateProductRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import static java.lang.String.format;
 
 @AllArgsConstructor
 @Component
@@ -23,6 +26,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Product getById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new NonExistingIdException(format("Product with id %s doesn't exist", id)));
     }
 
 }
