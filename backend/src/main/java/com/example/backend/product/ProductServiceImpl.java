@@ -2,8 +2,12 @@ package com.example.backend.product;
 
 import com.example.backend.product.model.CreateProductRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @AllArgsConstructor
+@Component
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
@@ -14,6 +18,11 @@ public class ProductServiceImpl implements ProductService {
                 .name(createProductRequest.name())
                 .build();
         return productRepository.save(product);
+    }
+
+    @Override
+    public List<Product> getAll() {
+        return productRepository.findAll();
     }
 
 }

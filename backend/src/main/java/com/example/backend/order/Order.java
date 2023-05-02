@@ -3,7 +3,7 @@ package com.example.backend.order;
 import com.example.backend.product.Product;
 import jakarta.persistence.*;
 import lombok.*;
-
+import com.example.backend.table.Table;
 import java.util.List;
 
 
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
-@Table(schema = "public")
+@jakarta.persistence.Table(schema = "public")
 public class Order {
     @Id
     @GeneratedValue
@@ -30,4 +30,14 @@ public class Order {
             )
     )
     private List<Product> products;
+
+    @OneToOne
+    @JoinTable(
+            name = "order_table",
+            joinColumns = @JoinColumn(name = "order_id")
+    )
+    private Table table;
+
+    @Enumerated(EnumType.STRING)
+    private OrderType type;
 }
