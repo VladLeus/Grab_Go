@@ -36,16 +36,29 @@ const showSchedule = ref(null);
 const showPhone = ref(null);
 const showLocation = ref(null);
 const showInstagram = ref(null);
-const toggleSchedule = () => {
+const toggleSchedule = async () => {
     showSchedule.value = !showSchedule.value;
+    console.log(showSchedule.value)
+    showPhone.value = false;
+    showLocation.value = false;
+    showInstagram.value = false;
 }
 const togglePhone = () => {
+    showSchedule.value = false;
     showPhone.value = !showPhone.value;
+    showLocation.value = false;
+    showInstagram.value = false;
 }
 const toggleLocation = () => {
+    showSchedule.value = false;
     showLocation.value = !showLocation.value;
+    showPhone.value = false;
+    showInstagram.value = false;
 }
 const toggleInstagram = () => {
+    showSchedule.value = false;
     showInstagram.value = !showInstagram.value;
+    showPhone.value = false;
+    showLocation.value = false;
 }
 </script>
