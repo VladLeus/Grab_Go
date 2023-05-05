@@ -31,7 +31,7 @@ public class BackendApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         ProductRepository productRepository = context.getBean(ProductRepository.class);
         TableRepository tableRepository = context.getBean(TableRepository.class);
-
+        System.out.println("lol i can commit from my phon");
         //Clean up repositories
         productRepository.deleteAll();
         tableRepository.deleteAll();
