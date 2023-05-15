@@ -36,7 +36,7 @@ defineProps({
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -65%);
+    transform: translate(-50%, -165%);
 }
 
 .mobile-schedule-outer-enter-active, .mobile-schedule-outer-leave-active{
