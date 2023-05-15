@@ -41,32 +41,32 @@ public class BackendApplication implements CommandLineRunner {
         List<Product> products = List.of(
                 Product.builder()
                         .name("4 Cheese")
-                        .type(ProductType.PIZZA)
+                        .category(ProductType.PIZZA)
                         .price(15.65)
                         .build(),
                 Product.builder()
                         .name("Pepperoni")
-                        .type(ProductType.PIZZA)
+                        .category(ProductType.PIZZA)
                         .price(12.89)
                         .build(),
                 Product.builder()
                         .name("Margarita")
-                        .type(ProductType.PIZZA)
+                        .category(ProductType.PIZZA)
                         .price(13.45)
                         .build(),
                 Product.builder()
                         .name("Hawaii")
-                        .type(ProductType.PIZZA)
+                        .category(ProductType.PIZZA)
                         .price(11.25)
                         .build(),
                 Product.builder()
                         .name("Americano")
-                        .type(ProductType.HOT_DRINK)
+                        .category(ProductType.HOT_DRINK)
                         .price(1.25)
                         .build(),
                 Product.builder()
                         .name("Meat")
-                        .type(ProductType.PIZZA)
+                        .category(ProductType.PIZZA)
                         .price(14.49)
                         .build());
         productRepository.saveAll(products);

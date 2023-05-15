@@ -16,5 +16,5 @@ public class Product {
     private String name;
     private Double price;
     @Enumerated(EnumType.STRING)
-    private ProductType type;
+    private ProductType category;
 }

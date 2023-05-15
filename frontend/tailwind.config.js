@@ -6,7 +6,8 @@ module.exports = {
       colors: {
         "back_elem_col": "#E6CCB2",
         "second_col": "#582F0E",
-        "third_col": "#9C6644"
+        "third_col": "#9C6644",
+        "fourth_col": "#FB5607"
       },
       fontFamily: {
         RobotoSlab: ["Roboto Slab, sans-serif"]
