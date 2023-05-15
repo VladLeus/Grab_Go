@@ -103,6 +103,26 @@ public class BackendApplication implements CommandLineRunner {
                         .name("Tea")
                         .category(ProductType.HOT_DRINK)
                         .price(1.25)
+                        .build(),
+                Product.builder()
+                        .name("MilkShake")
+                        .category(ProductType.COLD_DRINK)
+                        .price(5.34)
+                        .build(),
+                Product.builder()
+                        .name("Lemonade")
+                        .category(ProductType.COLD_DRINK)
+                        .price(2.25)
+                        .build(),
+                Product.builder()
+                        .name("Mojito")
+                        .category(ProductType.COLD_DRINK)
+                        .price(4.99)
+                        .build(),
+                Product.builder()
+                        .name("Mango-pineapple lemonade")
+                        .category(ProductType.COLD_DRINK)
+                        .price(1.25)
                         .build());
         productRepository.saveAll(products);
         //Add tables to repository
