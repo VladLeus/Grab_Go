@@ -1,6 +1,6 @@
 <template>
     <Transition name="mobile-phone-outer">
-        <div v-show="phoneIsActive" class="w-[375px] bg-second_col h-[375px] rounded-[15px] child">
+        <div v-show="phoneIsActive" class="w-[375px] bg-second_col h-[375px] rounded-[15px] child z-[1]">
             <div class="flex flex-col gap-6">
                 <slot/>
                 <i class="fi fi-sr-cross text-back_elem_col w-[30px] h-[30px] my-4 mx-4"
