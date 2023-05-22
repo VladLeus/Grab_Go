@@ -16,7 +16,7 @@
                         <p class="font-RobotoSlab-400">{{ product.name }}</p>
                         <div class="flex flex-row">
                             <p class="text-lg text-fourth_col">{{ product.price }} $</p>
-                            <i class="fi fi-rr-shopping-cart-add text-lg text-second_col ml-3"></i>
+                            <i class="uil uil-shopping-basket text-xl text-second_col ml-3 mb-1"></i>
                         </div>
                     </div>
                     <img class="w-[65px] h-[65px] rounded-[15px] mr-4"
@@ -42,7 +42,7 @@
                         <p class="font-RobotoSlab-400">{{ product.name }}</p>
                         <div class="flex flex-row">
                             <p class="text-lg text-fourth_col">{{ product.price }} $</p>
-                            <i class="fi fi-rr-shopping-cart-add text-lg text-second_col ml-3"></i>
+                            <i class="uil uil-shopping-basket text-xl text-second_col ml-3"></i>
                         </div>
                     </div>
                     <img class="w-[65px] h-[65px] rounded-[15px] mr-4"
@@ -68,7 +68,7 @@
                         <p class="font-RobotoSlab-400">{{ product.name }}</p>
                         <div class="flex flex-row">
                             <p class="text-lg text-fourth_col">{{ product.price }} $</p>
-                            <i class="fi fi-rr-shopping-cart-add text-lg text-second_col ml-3"></i>
+                            <i class="uil uil-shopping-basket text-xl text-second_col ml-3"></i>
                         </div>
                     </div>
                     <img class="w-[65px] h-[65px] rounded-[15px] mr-4"
@@ -94,7 +94,7 @@
                         <p class="font-RobotoSlab-400">{{ product.name }}</p>
                         <div class="flex flex-row">
                             <p class="text-lg text-fourth_col">{{ product.price }} $</p>
-                            <i class="fi fi-rr-shopping-cart-add text-lg text-second_col ml-3"></i>
+                            <i class="uil uil-shopping-basket text-xl text-second_col ml-3"></i>
                         </div>
                     </div>
                     <img class="w-[65px] h-[65px] rounded-[15px] mr-4"

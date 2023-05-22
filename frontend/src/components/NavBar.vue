@@ -4,7 +4,7 @@
             <RouterLink :to="{name: 'home'}">
                 <img src="/src/assets/img/Logo.png" alt="Logo" class="w-[100px] h-[55px] ml-3.5">
             </RouterLink>
-            <i class="fi fi-rr-menu-burger text-back_elem_col mr-3.5 duration-150 cursor-pointer"
+            <i class="uil uil-bars text-back_elem_col text-2xl mr-3.5 duration-150 cursor-pointer"
                @click="toggleMenu"></i>
             <MobileNavigation :mobile-nav-is-active="showMenu" @close-navigation="toggleMenu">
             </MobileNavigation>
