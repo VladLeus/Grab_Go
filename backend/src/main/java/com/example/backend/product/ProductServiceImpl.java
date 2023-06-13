@@ -16,11 +16,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(CreateProductRequest createProductRequest) {
-        Product product = Product.builder()
+        /*Product product = Product.builder()
                 .price(createProductRequest.price())
                 .name(createProductRequest.name())
-                .build();
-        return productRepository.save(product);
+                .build();*/
+        return null;
     }
 
     @Override

@@ -3,6 +3,9 @@ package com.example.backend;
 import com.example.backend.product.Product;
 import com.example.backend.product.ProductRepository;
 import com.example.backend.product.ProductType;
+import com.example.backend.product.productTypes.Dessert;
+import com.example.backend.product.productTypes.Drink;
+import com.example.backend.product.productTypes.Pizza;
 import com.example.backend.table.Table;
 import com.example.backend.table.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,82 +42,82 @@ public class BackendApplication implements CommandLineRunner {
         //Add products to repository
         //to extend just add new products at the end of List.of()
         List<Product> products = List.of(
-                Product.builder()
+                Pizza.builder()
                         .name("4 Cheese")
                         .category(ProductType.PIZZA)
                         .price(15.65)
                         .build(),
-                Product.builder()
+                Pizza.builder()
                         .name("Pepperoni")
                         .category(ProductType.PIZZA)
                         .price(12.89)
                         .build(),
-                Product.builder()
+                Pizza.builder()
                         .name("Margarita")
                         .category(ProductType.PIZZA)
                         .price(13.45)
                         .build(),
-                Product.builder()
+                Pizza.builder()
                         .name("Hawaii")
                         .category(ProductType.PIZZA)
                         .price(11.25)
                         .build(),
-                Product.builder()
+                Pizza.builder()
                         .name("Meat")
                         .category(ProductType.PIZZA)
                         .price(14.49)
                         .build(),
-                Product.builder()
+                Dessert.builder()
                         .name("Cheese cake")
                         .category(ProductType.DESSERT)
                         .price(8.99)
                         .build(),
-                Product.builder()
+                Dessert.builder()
                         .name("Hot chocolate")
                         .category(ProductType.DESSERT)
                         .price(5.25)
                         .build(),
-                Product.builder()
+                Dessert.builder()
                         .name("Cinnabon")
                         .category(ProductType.DESSERT)
                         .price(2.49)
                         .build(),
-                Product.builder()
+                Dessert.builder()
                         .name("Brownies")
                         .category(ProductType.DESSERT)
                         .price(1.99)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("Americano")
                         .category(ProductType.HOT_DRINK)
                         .price(2.35)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("Espresso")
                         .category(ProductType.HOT_DRINK)
                         .price(1.85)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("Late")
                         .category(ProductType.HOT_DRINK)
                         .price(3.15)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("Tea")
                         .category(ProductType.HOT_DRINK)
                         .price(1.25)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("MilkShake")
                         .category(ProductType.COLD_DRINK)
                         .price(5.34)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("Lemonade")
                         .category(ProductType.COLD_DRINK)
                         .price(2.25)
                         .build(),
-                Product.builder()
+                Drink.builder()
                         .name("Mojito")
                         .category(ProductType.COLD_DRINK)
                         .price(4.99)
