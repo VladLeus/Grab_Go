@@ -1,6 +1,5 @@
 package com.example.backend.exception;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,9 +11,16 @@ import java.time.LocalDateTime;
 public record ControllerExceptionHandler() {
 
 
-    @ExceptionHandler({NonExistingIdException.class, BadRequestException.class})
-    public ResponseEntity<ApiException> handleValidationException(HttpServletRequest request, NonExistingIdException e) {
+    @ExceptionHandler({BadRequestException.class})
+    public ResponseEntity<ApiException> handleBadRequestException(BadRequestException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                new ApiException(e.getMessage(), LocalDateTime.now())
+        );
+    }
+
+    @ExceptionHandler({NonExistingIdException.class})
+    public ResponseEntity<ApiException> handleNonExistingIdException(NonExistingIdException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
                 new ApiException(e.getMessage(), LocalDateTime.now())
         );
     }
