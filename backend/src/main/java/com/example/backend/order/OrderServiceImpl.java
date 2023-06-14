@@ -25,6 +25,7 @@ public class OrderServiceImpl implements OrderService{
     public Order create(CreateOrderRequest createOrderRequest) {
         Order order = Order.builder()
                 .name(createOrderRequest.name())
+                .type(createOrderRequest.ty)
                 .build();
         orderRepository.save(order);
         return order;
