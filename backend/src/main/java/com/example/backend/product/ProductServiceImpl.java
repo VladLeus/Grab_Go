@@ -2,6 +2,9 @@ package com.example.backend.product;
 
 import com.example.backend.exception.NonExistingIdException;
 import com.example.backend.product.model.CreateProductRequest;
+import com.example.backend.product.types.Dessert;
+import com.example.backend.product.types.Drink;
+import com.example.backend.product.types.Pizza;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +19,28 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(CreateProductRequest createProductRequest) {
-        /*Product product = Product.builder()
-                .price(createProductRequest.price())
-                .name(createProductRequest.name())
-                .build();*/
-        return null;
+        ProductType productType = createProductRequest.productType();
+        Product product = switch (productType) {
+            case PIZZA -> Pizza.builder()
+                    .name(createProductRequest.name())
+                    .price(createProductRequest.price())
+                    .category(productType)
+                    .build();
+            case DESSERT -> Dessert.builder()
+                    .name(createProductRequest.name())
+                    .price(createProductRequest.price())
+                    .category(productType)
+                    .build();
+            case HOT_DRINK, COLD_DRINK -> Drink.builder()
+                    .name(createProductRequest.name())
+                    .price(createProductRequest.price())
+                    .category(productType)
+                    .build();
+        };
+
+        productRepository.save(product);
+
+        return product;
     }
 
     @Override

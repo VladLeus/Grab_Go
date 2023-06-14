@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public record ControllerExceptionHandler() {
 
 
-    @ExceptionHandler({NonExistingIdException.class})
+    @ExceptionHandler({NonExistingIdException.class, BadRequestException.class})
     public ResponseEntity<ApiException> handleValidationException(HttpServletRequest request, NonExistingIdException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 new ApiException(e.getMessage(), LocalDateTime.now())

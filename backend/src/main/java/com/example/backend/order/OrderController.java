@@ -2,8 +2,11 @@ package com.example.backend.order;
 
 import com.example.backend.order.model.AddProductRequest;
 import com.example.backend.order.model.CreateOrderRequest;
+import com.example.backend.product.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -34,5 +37,13 @@ public class OrderController {
     ) {
         return orderService.addProduct(id, addProductRequest);
     }
+
+    @GetMapping("/{id}/products/sorted")
+    public List<Product> getSortedByTimeProducts(
+            @PathVariable("id") Long id
+    ) {
+        return orderService.getSortedByTime(id);
+    }
+
 
 }

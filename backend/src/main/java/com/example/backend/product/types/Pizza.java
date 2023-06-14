@@ -1,10 +1,9 @@
-package com.example.backend.product.productTypes;
+package com.example.backend.product.types;
 
 import com.example.backend.product.Product;
 import com.example.backend.product.ProductType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -18,7 +17,7 @@ public class Pizza  extends Product {
     }
 
     @Override
-    protected Integer getCookingTime(Product product) {
+    public Integer cookingTime() {
         return 40;
     }
 }

@@ -12,7 +12,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Inheritance
 @DiscriminatorColumn(name="PRODUCT_TYPE")
-@Table(name="PRODUCTS")
+@Table(name="PRODUCT")
 public abstract class Product {
     @Id
     @GeneratedValue
@@ -22,5 +22,5 @@ public abstract class Product {
     @Enumerated(EnumType.STRING)
     private ProductType category;
 
-    protected abstract Integer getCookingTime(Product product);
+    public abstract Integer cookingTime();
 }

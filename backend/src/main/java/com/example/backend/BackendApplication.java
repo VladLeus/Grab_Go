@@ -1,11 +1,12 @@
 package com.example.backend;
 
+import com.example.backend.order.OrderRepository;
 import com.example.backend.product.Product;
 import com.example.backend.product.ProductRepository;
 import com.example.backend.product.ProductType;
-import com.example.backend.product.productTypes.Dessert;
-import com.example.backend.product.productTypes.Drink;
-import com.example.backend.product.productTypes.Pizza;
+import com.example.backend.product.types.Dessert;
+import com.example.backend.product.types.Drink;
+import com.example.backend.product.types.Pizza;
 import com.example.backend.table.Table;
 import com.example.backend.table.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ import java.util.List;
 public class BackendApplication implements CommandLineRunner {
     @Autowired
     private ApplicationContext context;
+    @Autowired
+    private OrderRepository orderRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
@@ -36,6 +39,7 @@ public class BackendApplication implements CommandLineRunner {
         TableRepository tableRepository = context.getBean(TableRepository.class);
 
         //Clean up repositories
+        orderRepository.deleteAll();
         productRepository.deleteAll();
         tableRepository.deleteAll();
 
@@ -141,16 +145,16 @@ public class BackendApplication implements CommandLineRunner {
 
     @Bean
     public CorsFilter corsFilter() {
+        final String acai = "Access-Control-Allow-Origin";
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:3000", "http://localhost:5173"));
-        //corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
-        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
+        corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", acai, "Content-Type",
                 "Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With",
                 "Access-Control-Request-Method", "Access-Control-Request-Headers"));
         corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization",
-                "Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "File-Name"));
+                acai, acai, "Access-Control-Allow-Credentials", "File-Name"));
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
