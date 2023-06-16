@@ -38,7 +38,7 @@ public class OrderController {
         return orderService.addProduct(id, addProductRequest);
     }
 
-    @GetMapping("/{id}/products/sorted")
+    @GetMapping("/{id}/products/cooking")
     public Integer getSortedByTimeProducts(
             @PathVariable("id") Long id
     ) {
