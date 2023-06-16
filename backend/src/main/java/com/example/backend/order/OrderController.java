@@ -39,7 +39,7 @@ public class OrderController {
     }
 
     @GetMapping("/{id}/products/sorted")
-    public List<Product> getSortedByTimeProducts(
+    public Integer getSortedByTimeProducts(
             @PathVariable("id") Long id
     ) {
         return orderService.getSortedByTime(id);

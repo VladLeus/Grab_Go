@@ -13,7 +13,7 @@ public interface OrderService {
 
     Order addProduct(Long id, AddProductRequest addProductRequest);
 
-    List<Product> getSortedByTime(Long id);
+    Integer getSortedByTime(Long id);
 
     void deleteOrderById(Long id);
 }

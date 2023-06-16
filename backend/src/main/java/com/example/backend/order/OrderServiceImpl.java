@@ -67,13 +67,14 @@ public class OrderServiceImpl implements OrderService {
 
     @SneakyThrows
     @Override
-    public List<Product> getSortedByTime(Long id) {
+    public Integer getSortedByTime(Long id) {
         List<Product> allProducts = orderRepository.findById(id)
                 .orElseThrow(neIDe)
                 .getProducts();
-        return allProducts.stream()
+        List<Product> sorted = allProducts.stream()
                 .sorted(Comparator.comparing(Product::cookingTime))
                 .toList();
+        return sorted.get(allProducts.size() - 1).cookingTime();
     }
 
     @Override
