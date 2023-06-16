@@ -44,6 +44,10 @@ public class OrderServiceImpl implements OrderService {
                 .build();
 
         orderRepository.save(order);
+        if (orderTable != null) {
+            orderTable.setOrderId(order.getId());
+            tableRepository.save(orderTable);
+        }
         return order;
     }
 
@@ -70,5 +74,10 @@ public class OrderServiceImpl implements OrderService {
         return allProducts.stream()
                 .sorted(Comparator.comparing(Product::cookingTime))
                 .toList();
+    }
+
+    @Override
+    public void deleteOrderById(Long id) {
+        orderRepository.deleteById(id);
     }
 }

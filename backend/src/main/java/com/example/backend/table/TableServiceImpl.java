@@ -23,4 +23,13 @@ public class TableServiceImpl implements TableService {
         return tableRepository.findById(id)
                 .orElseThrow(() -> new NonExistingIdException(format("Table with id %s doesn't exist", id)));
     }
+
+    @Override
+    public Table updateOrderId(Long id, Long orderId) {
+        Table table = tableRepository.findById(id)
+                .orElseThrow(() -> new NonExistingIdException(format("Table with id %s doesn't exist", id)));
+
+        table.setOrderId(orderId);
+        return tableRepository.save(table);
+    }
 }

@@ -1,10 +1,7 @@
 package com.example.backend.table;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,12 @@ public class TableController {
             @PathVariable("id") Long id
     ) {
         return tableService.getById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Table updateTableOrder(
+            @PathVariable("id") Long id
+    ) {
+        return tableService.updateOrderId(id, null);
     }
 }

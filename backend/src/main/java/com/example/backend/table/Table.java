@@ -20,6 +20,5 @@ public class Table {
     @GeneratedValue
     private Long id;
     private String name;
-    @OneToOne
-    private Order order;
+    private Long orderId;
 }

@@ -45,5 +45,8 @@ public class OrderController {
         return orderService.getSortedByTime(id);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteOrderById(@PathVariable("id") Long id) {
+        orderService.deleteOrderById(id);
+    }
 }
