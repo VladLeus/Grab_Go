@@ -26,8 +26,8 @@
             <p class="text-second_col text-2xl font-RobotoSlab-500">Total amount:</p>
             <p class="text-fourth_col text-xl font-RobotoSlab-500">{{total}}$</p>
         </div>
-        <h1 class="separator text-second_col text-xl font-RobotoSlab-500">Restaurant</h1>
-        <div class="flex flex-col gap-4">
+        <h1  v-if="cart.length !== 0" class="separator text-second_col text-xl font-RobotoSlab-500">Restaurant</h1>
+        <div v-if="cart.length !== 0" class="flex flex-col gap-4">
             <div class="flex flex-row mx-2 items-center justify-between">
                 <p class="text-second_col text-xl font-RobotoSlab-500">Choose restaurant:</p>
                 <select id="restaurants" v-model="restaurant[0]"
@@ -58,12 +58,17 @@
                     </select>
                 </div>
             </Transition>
+            <div @click="createOrder" class="flex items-center justify-center w-[350px] h-[45px] mx-auto bg-fourth_col rounded-[15px] cursor-pointer hover:drop-shadow-xl">
+                <p class="text-back_elem_col text-xl font-RobotoSlab-400">Make an order</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
+import {useRoute, useRouter} from "vue-router";
+
 
 const cart = ref([]);
 const total = ref(0);
@@ -71,6 +76,8 @@ const restaurant = ['Blahovisna Str.', 'T. Shevchenko Blvd.', '\"Sosnovy Bir\"']
 const orderType = ['Inside', 'Outside'];
 let order = orderType[1];
 const isInside = ref(false);
+const router = useRouter();
+const route = useRoute();
 
 if (localStorage.getItem('cart')) {
     cart.value = JSON.parse(localStorage.getItem('cart'));
@@ -106,6 +113,62 @@ let selectedTable = tables[0];
 const selectType = () => {
     isInside.value = order === 'Inside';
 }
+const addProdsToOrder = async (orderReq) => {
+    for (const item of cart.value) {
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        let productsAddBody = JSON.stringify({
+            "productId": item.id,
+            "quantity": item.amount
+        })
+
+        let requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: productsAddBody,
+            redirect: 'follow'
+        };
+        const orderId = orderReq.id;
+        const req = await fetch(`http://localhost:8080/orders/${orderId}/products`, requestOptions).then(response => response.json());
+        console.log(req);
+    }
+}
+const createOrder = async () => {
+    let myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const type = order.toUpperCase();
+    let tableId = null;
+    if (order === 'Inside') {
+        tableId = selectedTable.id;
+    }
+    let requestBody = JSON.stringify({
+        "name": "order",
+        "type": type,
+        "tableId": tableId
+    });
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: requestBody,
+        redirect: 'follow'
+    };
+
+    const orderReq = await fetch("http://localhost:8080/orders", requestOptions).then(response => response.json());
+    console.log(orderReq);
+    await addProdsToOrder(orderReq);
+
+    localStorage.clear();
+    router.push({
+        name: 'order',
+        params: {orderId: orderReq.id},
+        query: {
+            idReady: false
+        }
+    })
+}
+
 
 </script>
 

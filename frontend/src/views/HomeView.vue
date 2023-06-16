@@ -12,5 +12,5 @@
 
 <script setup>
 
-import Menu from "@/views/Menu.vue";
+import Menu from "@/components/Menu.vue";
 </script>

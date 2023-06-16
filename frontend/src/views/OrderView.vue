@@ -1,8 +1,8 @@
 <template>
     <div class="h-full">
-        <h1 class="separator text-second_col text-xl font-RobotoSlab-500">Cart</h1>
+        <h1 class="separator text-second_col text-xl font-RobotoSlab-500">Order</h1>
         <Suspense>
-            <Cart/>
+            <Order />
             <template #fallback>
                 <p>Loading...</p>
             </template>
@@ -11,10 +11,10 @@
 </template>
 
 <script setup>
-import Cart from "@/components/Cart.vue";
+import Order from "@/components/Order.vue";
 
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>
