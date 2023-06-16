@@ -1,7 +1,7 @@
 <template>
     <div>
-        <p class="mx-1.5 sm:mx-0 text-sm sm:text-xl" v-if="cart.length === 0">
-            smth
+        <p class="ml-6 font-RobotoSlab-500 text-second_col text-xl" v-if="cart.length === 0">
+            You haven't added any products yet.
         </p>
         <ul>
             <li
@@ -12,34 +12,111 @@
                 flex flex-row mx-auto items-center justify-between
                 rounded-[15px] font-RobotoSlab-400 text-second_col
                 gap-2">
-                    <p class="ml-2 text-2xl">{{product.name}}</p>
+                    <p class="ml-2 text-2xl w-[100px]">{{product.name}}</p>
                     <div class="flex flex-row gap-3 items-center justify-around pr-1.5">
                         <i @click="less(index)" class="fi fi-rr-minus text-lg pt-1"></i>
                         <p class="text-xl">{{ product.amount }}</p>
                         <i @click="more(index)" class="fi fi-rr-plus text-lg pt-1"></i>
                     </div>
-                    <p class="mr-2 text-xl text-fourth_col">{{product.price}}$</p>
+                    <p class="mr-2 text-xl text-fourth_col w-[65px]">{{Number((product.price * product.amount).toFixed(2))}}$</p>
                 </div>
             </li>
         </ul>
+        <div v-if="cart.length !== 0" class="flex flex-row items-center justify-between mx-6 my-4">
+            <p class="text-second_col text-2xl font-RobotoSlab-500">Total amount:</p>
+            <p class="text-fourth_col text-xl font-RobotoSlab-500">{{total}}$</p>
+        </div>
+        <h1 class="separator text-second_col text-xl font-RobotoSlab-500">Restaurant</h1>
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-row mx-2 items-center justify-between">
+                <p class="text-second_col text-xl font-RobotoSlab-500">Choose restaurant:</p>
+                <select id="restaurants" v-model="restaurant[0]"
+                        class="bg-back_elem_col rounded-[15px] pl-0.5 h-[45px] w-[180px] text-third_col">
+                    <option class="rounded-[15px] text-third_col outline-0" v-for="option in restaurant"
+                            :value="option">{{ option }}
+                    </option>
+                </select>
+            </div>
+            <div class="flex flex-row mx-2 items-center justify-between">
+                <p class="text-second_col text-xl font-RobotoSlab-500">Choose order type:</p>
+                <select id="order" v-model="order" @change="selectType"
+                        class="bg-back_elem_col rounded-[15px] pl-0.5 h-[45px] w-[180px] text-third_col">
+                    <option class="rounded-[15px] text-third_col outline-0" v-for="option in orderType" :value="option">
+                        {{ option }}
+                    </option>
+                </select>
+            </div>
+            <Transition name="table">
+                <div v-if="isInside" class="flex flex-row mx-2 items-center justify-between">
+                    <p class="text-second_col text-xl font-RobotoSlab-500">Choose table:</p>
+                    <select id="table" v-model="selectedTable"
+                            class="bg-back_elem_col rounded-[15px] pl-0.5 h-[45px] w-[180px] text-third_col">
+                        <option v-show="option.orderId === null" class="rounded-[15px] text-third_col outline-0" v-for="option in tables"
+                                :value="option">
+                            {{ option.name }}
+                        </option>
+                    </select>
+                </div>
+            </Transition>
+        </div>
     </div>
 </template>
 
 <script setup>
-let cart = [];
+import { ref } from 'vue';
+
+const cart = ref([]);
+const total = ref(0);
+const restaurant = ['Blahovisna Str.', 'T. Shevchenko Blvd.', '\"Sosnovy Bir\"']
+const orderType = ['Inside', 'Outside'];
+let order = orderType[1];
+const isInside = ref(false);
 
 if (localStorage.getItem('cart')) {
-     cart = JSON.parse(localStorage.getItem('cart'));
+    cart.value = JSON.parse(localStorage.getItem('cart'));
 }
+const getTotalPrice = () => {
+    let temp = 0;
+    cart.value.forEach(item => {
+        temp += item.price;
+        total.value = Number(temp.toFixed(2));
+    })
+}
+getTotalPrice();
+const less = (index) => {
+    cart.value[index].amount--;
+    total.value = Number((total.value - cart.value[index].price).toFixed(2));
+    if (cart.value[index].amount < 1) {
+        cart.value.splice(index, 1);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart.value));
+};
+
+const more = (index) => {
+    cart.value[index].amount++;
+    total.value = Number((total.value + cart.value[index].price).toFixed(2));
+    localStorage.setItem('cart', JSON.stringify(cart.value));
+};
 const getTables = async () => {
     return await fetch("http://localhost:8080/tables").then(response => response.json())
 }
 const tables = await getTables();
+let selectedTable = tables[0];
 
-const less = (index) => cart[index].amount--;
-const more = (index) => cart[index].amount++;
+const selectType = () => {
+    isInside.value = order === 'Inside';
+}
+
 </script>
 
-<style lang="scss" scoped>
+<style>
+.table-enter-active,
+.table-leave-active {
+    transition: opacity 0.5s ease;
+}
 
+.table-enter-from,
+.table-leave-to {
+    opacity: 0;
+}
 </style>

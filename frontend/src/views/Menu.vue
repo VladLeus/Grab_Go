@@ -107,9 +107,7 @@
 
 
 <script setup>
-
 import {ref} from "vue";
-import {outputFile} from "tailwindcss/src/oxide/cli/build/utils";
 
 const showPizza = ref(false);
 const showDesserts = ref(false);
@@ -139,16 +137,18 @@ const getProducts = async () => {
 const products = await getProducts();
 
 const addToCart = (product, index) => {
-    if (!product.hasOwnProperty('amount')) {
-        product.amount = 1;
+    product.amount = 1;
+    if (cart.value.find(item => item.id === product.id)) {
+        document.getElementById(`${index}`).classList.remove('uil-shopping-basket');
+        document.getElementById(`${index}`).classList.add('uil-check')
+        return;
     }
-    cart.value.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart.value));
-
     if (document.getElementById(`${index}`).classList.contains('uil-shopping-basket')) {
         document.getElementById(`${index}`).classList.remove('uil-shopping-basket');
         document.getElementById(`${index}`).classList.add('uil-check')
     }
+    cart.value.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart.value));
 }
 
 </script>
