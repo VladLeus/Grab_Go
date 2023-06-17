@@ -8,7 +8,8 @@
                 <h1 class="text-4xl text-back_elem_col font-RobotoSlab-500 pl-5"> Follow us </h1>
                 <p class="text-back_elem_col text-2xl font-RobotoSlab-300 pl-5">Instagram: @_G&G_</p>
                 <img src="/src/assets/img/insta.png" alt="instagram" class="rounded-[15px] w-[150px] h-[150px] mx-auto">
-                <p class="text-back_elem_col text-md font-RobotoSlab-300 pl-5">Follow us on Instagram and be the first to know about our new offers!</p>
+                <p class="text-back_elem_col text-md font-RobotoSlab-300 pl-5">Follow us on Instagram and be the first
+                    to know about our new offers!</p>
             </div>
         </div>
     </Transition>
@@ -25,14 +26,14 @@ defineProps({
 </script>
 
 <style>
-.child{
+.child {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -165%);
 }
 
-.mobile-instagram-outer-enter-active, .mobile-instagram-outer-leave-active{
+.mobile-instagram-outer-enter-active, .mobile-instagram-outer-leave-active {
     transition: opacity 0.3s ease-in;
 }
 

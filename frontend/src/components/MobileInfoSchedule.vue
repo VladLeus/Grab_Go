@@ -14,7 +14,8 @@
                         Sat-Sun: 11:00-21:00
                     </li>
                 </ul>
-                <p class="text-back_elem_col text-md font-RobotoSlab-300 pl-5">We work without breaks and on holidays!</p>
+                <p class="text-back_elem_col text-md font-RobotoSlab-300 pl-5">We work without breaks and on
+                    holidays!</p>
             </div>
         </div>
     </Transition>
@@ -32,14 +33,14 @@ defineProps({
 </script>
 
 <style>
-.child{
+.child {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -165%);
 }
 
-.mobile-schedule-outer-enter-active, .mobile-schedule-outer-leave-active{
+.mobile-schedule-outer-enter-active, .mobile-schedule-outer-leave-active {
     transition: opacity 0.3s ease-in;
 }
 

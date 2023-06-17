@@ -27,14 +27,14 @@ defineProps({
 </script>
 
 <style>
-.child{
+.child {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -165%);
 }
 
-.mobile-location-outer-enter-active, .mobile-location-outer-leave-active{
+.mobile-location-outer-enter-active, .mobile-location-outer-leave-active {
     transition: opacity 0.3s ease-in;
 }
 

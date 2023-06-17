@@ -2,7 +2,7 @@
     <div class="h-full">
         <h1 class="separator text-second_col text-xl font-RobotoSlab-500 max-w-[1260px] mx-auto">Order</h1>
         <Suspense>
-            <Order />
+            <Order/>
             <template #fallback>
                 <p>Loading...</p>
             </template>

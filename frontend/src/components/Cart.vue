@@ -5,28 +5,31 @@
         </p>
         <ul>
             <li
-                v-for="(product, index) in cart"
-                :key="product.id"
-                class="flex flex-col gap-2 mt-1">
+                    v-for="(product, index) in cart"
+                    :key="product.id"
+                    class="flex flex-col gap-2 mt-1">
                 <div class="bg-back_elem_col w-[350px] h-[75px]
                 flex flex-row mx-auto items-center justify-between
                 rounded-[15px] font-RobotoSlab-400 text-second_col
                 gap-2 sm:w-[450px] lg:w-[650px]">
-                    <p class="ml-2 text-2xl w-[100px] sm:w-[175px]">{{product.name}}</p>
+                    <p class="ml-2 text-2xl w-[100px] sm:w-[175px]">{{ product.name }}</p>
                     <div class="flex flex-row gap-3 items-center justify-around pr-1.5">
                         <i @click="less(index)" class="fi fi-rr-minus text-lg pt-1"></i>
                         <p class="text-xl">{{ product.amount }}</p>
                         <i @click="more(index)" class="fi fi-rr-plus text-lg pt-1"></i>
                     </div>
-                    <p class="mr-2 text-xl text-fourth_col w-[65px]">{{Number((product.price * product.amount).toFixed(2))}}$</p>
+                    <p class="mr-2 text-xl text-fourth_col w-[65px]">
+                        {{ Number((product.price * product.amount).toFixed(2)) }}$</p>
                 </div>
             </li>
         </ul>
-        <div v-if="cart.length !== 0" class="w-[375px] sm:w-[450px] lg:w-[650px] flex flex-row items-center justify-between mx-auto my-4">
+        <div v-if="cart.length !== 0"
+             class="w-[375px] sm:w-[450px] lg:w-[650px] flex flex-row items-center justify-between mx-auto my-4">
             <p class="text-second_col text-2xl font-RobotoSlab-500">Total amount:</p>
-            <p class="text-fourth_col text-xl font-RobotoSlab-500">{{total}}$</p>
+            <p class="text-fourth_col text-xl font-RobotoSlab-500">{{ total }}$</p>
         </div>
-        <h1  v-if="cart.length !== 0" class="separator text-second_col text-xl mx-auto max-w-[1260px] font-RobotoSlab-500">Restaurant</h1>
+        <h1 v-if="cart.length !== 0"
+            class="separator text-second_col text-xl mx-auto max-w-[1260px] font-RobotoSlab-500">Restaurant</h1>
         <div v-if="cart.length !== 0" class="flex flex-col gap-4 w-[375px] mx-auto sm:w-[450px] lg:w-[650px]">
             <div class="flex flex-row mx-2 items-center justify-between">
                 <p class="text-second_col text-xl font-RobotoSlab-500">Choose order type:</p>
@@ -42,14 +45,16 @@
                     <p class="text-second_col text-xl font-RobotoSlab-500">Choose table:</p>
                     <select id="table" v-model="selectedTable"
                             class="bg-back_elem_col rounded-[15px] pl-0.5 h-[45px] w-[180px] text-third_col">
-                        <option v-show="option.orderId === null" class="rounded-[15px] text-third_col outline-0" v-for="option in tables"
+                        <option v-show="option.orderId === null" class="rounded-[15px] text-third_col outline-0"
+                                v-for="option in tables"
                                 :value="option">
                             {{ option.name }}
                         </option>
                     </select>
                 </div>
             </Transition>
-            <div @click="createOrder" class="flex items-center justify-center w-[350px] h-[45px] mx-auto bg-fourth_col rounded-[15px] cursor-pointer hover:drop-shadow-xl mb-6">
+            <div @click="createOrder"
+                 class="flex items-center justify-center w-[350px] h-[45px] mx-auto bg-fourth_col rounded-[15px] cursor-pointer hover:drop-shadow-xl mb-6">
                 <p class="text-back_elem_col text-xl font-RobotoSlab-400">Make an order</p>
             </div>
         </div>

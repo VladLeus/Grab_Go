@@ -2,8 +2,8 @@
     <div class="lg:hidden">
         <div>
             <div
-                class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
-                @click="togglePizza"
+                    class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
+                    @click="togglePizza"
             >
                 <p class="text-3xl text-second_col font-RobotoSlab-500 ml-2">Pizza</p>
                 <i :class="!showPizza ? 'fi fi-sr-angle-right text-3xl text-second_col mr-2 mt-1' : 'fi fi-sr-angle-down text-3xl text-second_col mr-2 mt-1'"></i>
@@ -29,8 +29,8 @@
         </div>
         <div class="mt-2">
             <div
-                class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
-                @click="toggleDesserts"
+                    class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
+                    @click="toggleDesserts"
             >
                 <p class="text-3xl text-second_col font-RobotoSlab-500 ml-2">Desserts</p>
                 <i :class="!showDesserts ? 'fi fi-sr-angle-right text-3xl text-second_col mr-2 mt-1' : 'fi fi-sr-angle-down text-3xl text-second_col mr-2 mt-1'"></i>
@@ -56,8 +56,8 @@
         </div>
         <div class="mt-2">
             <div
-                class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
-                @click="toggleHotDrinks"
+                    class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
+                    @click="toggleHotDrinks"
             >
                 <p class="text-3xl text-second_col font-RobotoSlab-500 ml-2">Hot Drinks</p>
                 <i :class="!showHotDrinks ? 'fi fi-sr-angle-right text-3xl text-second_col mr-2 mt-1' : 'fi fi-sr-angle-down text-3xl text-second_col mr-2 mt-1'"></i>
@@ -83,8 +83,8 @@
         </div>
         <div class="mt-2 mb-2">
             <div
-                class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
-                @click="toggleColdDrinks"
+                    class="font-RobotoSlab w-[375px] h-[75px] bg-back_elem_col rounded-[15px] mx-auto flex flex-row items-center justify-between"
+                    @click="toggleColdDrinks"
             >
                 <p class="text-3xl text-second_col font-RobotoSlab-500 ml-2">Cold Drinks</p>
                 <i :class="!showColdDrinks ? 'fi fi-sr-angle-right text-3xl text-second_col mr-2 mt-1' : 'fi fi-sr-angle-down text-3xl text-second_col mr-2 mt-1'"></i>
@@ -113,10 +113,16 @@
         <div class="menu">
             <div class="flex flex-col gap-4 ml-14">
                 <h2 class="text-second_col text-2xl font-RobotoSlab-500">Select the dish:</h2>
-                <p @click="togglePizzaPC" class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Pizza</p>
-                <p @click="toggleDessertsPC" class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Desserts</p>
-                <p @click="toggleHotDrinksPC" class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Hot drinks</p>
-                <p @click="toggleColdDrinksPC" class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Cold drinks</p>
+                <p @click="togglePizzaPC"
+                   class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Pizza</p>
+                <p @click="toggleDessertsPC"
+                   class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Desserts</p>
+                <p @click="toggleHotDrinksPC"
+                   class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Hot
+                    drinks</p>
+                <p @click="toggleColdDrinksPC"
+                   class="text-third_col text-2xl hover:text-second_col cursor-pointer font-RobotoSlab-400">Cold
+                    drinks</p>
             </div>
             <div>
                 <transition-group name="list-pc" tag="ul">
@@ -210,7 +216,7 @@ const showHotDrinks = ref(false);
 const showColdDrinks = ref(false);
 const cart = ref([]);
 
-if (localStorage.getItem('cart')){
+if (localStorage.getItem('cart')) {
     cart.value = JSON.parse(localStorage.getItem('cart'));
 }
 
@@ -283,9 +289,11 @@ const addToCart = (product, index) => {
 .list-leave-to {
     opacity: 0;
 }
+
 .list-pc-enter-active {
     transition: opacity 1s ease-in;
 }
+
 .list-pc-leave-active {
     transition: opacity 0.1s ease-out;
 }

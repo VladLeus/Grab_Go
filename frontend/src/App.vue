@@ -1,7 +1,7 @@
 <template>
     <div class="font-RobotoSlab bg-white flex flex-col h-screen">
-        <NavBar />
-        <RouterView />
+        <NavBar/>
+        <RouterView/>
         <MobileInfoFooter class="md:hidden"/>
     </div>
 </template>

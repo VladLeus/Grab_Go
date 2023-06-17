@@ -26,20 +26,22 @@ const getCookingTime = async () => {
 
 cookingTime.value = await getCookingTime();
 
-setInterval(async () => {
+const interval = setInterval(async () => {
     if (cookingTime.value > 0) {
         cookingTime.value--;
     } else {
         let query = Object.assign({}, route.query);
         delete query.isReady;
         router.replace({query});
-        if (query.tableId !== null){
+        if (query.tableId !== null) {
             let requestOptions = {
                 method: 'PUT',
                 redirect: 'follow'
             };
+            clearInterval(interval);
             return await fetch(`http://localhost:8080/tables/${route.query.tableId}`, requestOptions)
         }
+        clearInterval(interval);
     }
 }, 2500)
 
