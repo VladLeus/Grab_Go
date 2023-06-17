@@ -164,7 +164,8 @@ const createOrder = async () => {
         name: 'order',
         params: {orderId: orderReq.id},
         query: {
-            idReady: false
+            isReady: false,
+            tableId: tableId
         }
     })
 }

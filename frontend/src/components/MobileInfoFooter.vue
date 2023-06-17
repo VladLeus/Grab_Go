@@ -1,6 +1,6 @@
 <template>
     <footer class="sticky bottom-0 z-0">
-        <div class="bg-third_col container flex flex-row items-center w-full h-[85px] rounded-t-[15px] justify-around">
+        <div class="bg-third_col flex flex-row items-center w-screen h-[85px] rounded-t-[15px] justify-around">
             <div>
                 <i class="uil uil-clock-five text-[25px] w-[30px] text-back_elem_col hover:text-second_col"
                    @click="toggleSchedule"></i>

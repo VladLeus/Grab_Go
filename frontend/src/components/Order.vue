@@ -1,6 +1,14 @@
 <template>
-    <div>
-
+    <div v-if="route.query.isReady" class="flex flex-col gap-4 items-center justify-center my-6">
+        <p class="text-second_col text-2xl font-RobotoSlab-500">Your order № {{ orderId }}</p>
+        <p class="text-second_col text-sm font-RobotoSlab-400">Your order has been accepted</p>
+        <p class="text-second_col text-sm font-RobotoSlab-400"> It will be ready in:</p>
+        <p class="text-second_col text-4xl font-RobotoSlab-500">{{ cookingTime }} min</p>
+    </div>
+    <div v-if="!route.query.isReady" class="flex flex-col gap-4 items-center justify-center my-6">
+        <p class="text-second_col text-2xl font-RobotoSlab-500">Your order № {{ orderId }}</p>
+        <p class="text-second_col text-sm font-RobotoSlab-400">Your order is ready</p>
+        <p class="text-second_col text-sm font-RobotoSlab-400"> Enjoy your pharmacy!</p>
     </div>
 </template>
 
@@ -11,30 +19,29 @@ import {ref} from "vue";
 const route = useRoute();
 const router = useRouter();
 const orderId = route.params.orderId;
-const getSortedProds = async () => {
-    return await fetch(`http://localhost:8080/orders/${orderId}/products/sorted`).then(response => response.json());
-}
-
-const sortedProds = await getSortedProds();
 const cookingTime = ref(0);
-const getReadyTime = () => {
-    switch (sortedProds.last.category) {
-        case 'PIZZA':
-            cookingTime.value = 40;
-            break;
-        case 'DESSERT':
-            cookingTime.value = 15;
-            break;
-        case 'HOT_DRINK':
-            cookingTime.value = 10
-            break;
-        case 'COLD_DRINK':
-            cookingTime.value = 12
-            break;
-    }
+const getCookingTime = async () => {
+    return await fetch(`http://localhost:8080/orders/${orderId}/products/cooking`).then(response => response.json());
 }
 
-console.log(sortedProds);
+cookingTime.value = await getCookingTime();
+
+setInterval(async () => {
+    if (cookingTime.value > 0) {
+        cookingTime.value--;
+    } else {
+        let query = Object.assign({}, route.query);
+        delete query.isReady;
+        router.replace({query});
+        if (query.tableId !== null){
+            let requestOptions = {
+                method: 'PUT',
+                redirect: 'follow'
+            };
+            return await fetch(`http://localhost:8080/tables/${route.query.tableId}`, requestOptions)
+        }
+    }
+}, 2500)
 
 </script>
 
