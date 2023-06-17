@@ -9,9 +9,15 @@
             <MobileNavigation class="md:hidden" :mobile-nav-is-active="showMenu" @close-navigation="toggleMenu">
             </MobileNavigation>
             <div class="hidden md:flex flex-row items-center justify-around gap-4 text-back_elem_col mr-[55px] w-[300px]">
-                <p class="text-xl hover-underline-animation cursor-pointer">Menu</p>
-                <p class="text-xl hover-underline-animation cursor-pointer">Cart</p>
-                <p class="text-xl hover-underline-animation cursor-pointer">About Us</p>
+                <p @click="router.push({
+                name: 'home',
+                })" class="text-xl hover-underline-animation cursor-pointer">Menu</p>
+                <p @click="router.push({
+                name: 'cart',
+                })" class="text-xl hover-underline-animation cursor-pointer">Cart</p>
+                <p @click="router.push({
+                name: 'about',
+                })" class="text-xl hover-underline-animation cursor-pointer">About Us</p>
             </div>
         </nav>
     </header>
@@ -19,8 +25,10 @@
 
 <script setup>
 import MobileNavigation from "@/components/MobileNavigation.vue";
-import {RouterLink} from "vue-router";
+import {RouterLink, useRouter} from "vue-router";
 import {ref} from "vue";
+
+const router = useRouter()
 
 const showMenu = ref(null);
 const toggleMenu = () => {
@@ -50,4 +58,6 @@ const toggleMenu = () => {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+
+
 </style>

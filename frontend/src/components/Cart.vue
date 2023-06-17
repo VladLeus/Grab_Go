@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p class="ml-6 font-RobotoSlab-500 text-second_col text-xl" v-if="cart.length === 0">
+        <p class="mx-auto font-RobotoSlab-500 text-second_col text-xl w-[345px]" v-if="cart.length === 0">
             You haven't added any products yet.
         </p>
         <ul>
@@ -11,8 +11,8 @@
                 <div class="bg-back_elem_col w-[350px] h-[75px]
                 flex flex-row mx-auto items-center justify-between
                 rounded-[15px] font-RobotoSlab-400 text-second_col
-                gap-2">
-                    <p class="ml-2 text-2xl w-[100px]">{{product.name}}</p>
+                gap-2 sm:w-[450px] lg:w-[650px]">
+                    <p class="ml-2 text-2xl w-[100px] sm:w-[175px]">{{product.name}}</p>
                     <div class="flex flex-row gap-3 items-center justify-around pr-1.5">
                         <i @click="less(index)" class="fi fi-rr-minus text-lg pt-1"></i>
                         <p class="text-xl">{{ product.amount }}</p>
@@ -22,21 +22,12 @@
                 </div>
             </li>
         </ul>
-        <div v-if="cart.length !== 0" class="flex flex-row items-center justify-between mx-6 my-4">
+        <div v-if="cart.length !== 0" class="w-[375px] sm:w-[450px] lg:w-[650px] flex flex-row items-center justify-between mx-auto my-4">
             <p class="text-second_col text-2xl font-RobotoSlab-500">Total amount:</p>
             <p class="text-fourth_col text-xl font-RobotoSlab-500">{{total}}$</p>
         </div>
-        <h1  v-if="cart.length !== 0" class="separator text-second_col text-xl font-RobotoSlab-500">Restaurant</h1>
-        <div v-if="cart.length !== 0" class="flex flex-col gap-4">
-            <div class="flex flex-row mx-2 items-center justify-between">
-                <p class="text-second_col text-xl font-RobotoSlab-500">Choose restaurant:</p>
-                <select id="restaurants" v-model="restaurant[0]"
-                        class="bg-back_elem_col rounded-[15px] pl-0.5 h-[45px] w-[180px] text-third_col">
-                    <option class="rounded-[15px] text-third_col outline-0" v-for="option in restaurant"
-                            :value="option">{{ option }}
-                    </option>
-                </select>
-            </div>
+        <h1  v-if="cart.length !== 0" class="separator text-second_col text-xl mx-auto max-w-[1260px] font-RobotoSlab-500">Restaurant</h1>
+        <div v-if="cart.length !== 0" class="flex flex-col gap-4 w-[375px] mx-auto sm:w-[450px] lg:w-[650px]">
             <div class="flex flex-row mx-2 items-center justify-between">
                 <p class="text-second_col text-xl font-RobotoSlab-500">Choose order type:</p>
                 <select id="order" v-model="order" @change="selectType"
@@ -58,7 +49,7 @@
                     </select>
                 </div>
             </Transition>
-            <div @click="createOrder" class="flex items-center justify-center w-[350px] h-[45px] mx-auto bg-fourth_col rounded-[15px] cursor-pointer hover:drop-shadow-xl">
+            <div @click="createOrder" class="flex items-center justify-center w-[350px] h-[45px] mx-auto bg-fourth_col rounded-[15px] cursor-pointer hover:drop-shadow-xl mb-6">
                 <p class="text-back_elem_col text-xl font-RobotoSlab-400">Make an order</p>
             </div>
         </div>
